@@ -1,29 +1,73 @@
 autoUpdate:
   enabled: false
   schedule: ""
+bootConfigURL: https://github.com/cloudbees/cloudbees-jenkins-x-boot-config
 cluster:
-  clusterName: ""
-  environmentGitOwner: ""
+  clusterName: pr-1401-2-bdd-frontend
+  environmentGitOwner: cb-kubecd
   environmentGitPublic: true
-  project: ""
-  azure: {}
+  gitKind: github
+  gitName: github
+  gitPublic: true
+  gitServer: https://github.com
+  namespace: jx
+  project: jenkins-x-bdd3
   provider: gke
-  zone: ""
-gitops: true
+  registry: gcr.io
+  zone: europe-west1-c
 environments:
-  - key: dev
-  - key: staging
-  - key: production
+- ingress:
+    domain: 35.187.114.58.nip.io
+    externalDNS: false
+    namespaceSubDomain: -jx.
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: dev
+  repository: environment-pr-1401-2-bdd-frontend-dev
+- gitKind: github
+  gitServer: https://github.com
+  ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: staging
+  owner: cb-kubecd
+  repository: environment-pr-1401-2-bdd-frontend-staging
+- gitKind: github
+  gitServer: https://github.com
+  ingress:
+    domain: ""
+    externalDNS: false
+    namespaceSubDomain: ""
+    tls:
+      email: ""
+      enabled: false
+      production: false
+  key: production
+  owner: cb-kubecd
+  repository: environment-pr-1401-2-bdd-frontend-production
+gitops: true
 ingress:
-  domain: ""
+  domain: 35.187.114.58.nip.io
   externalDNS: false
+  namespaceSubDomain: -jx.
   tls:
     email: ""
     enabled: false
     production: false
 kaniko: true
+repository: nexus
 secretStorage: vault
 storage:
+  backup:
+    enabled: false
+    url: ""
   logs:
     enabled: true
     url: ""
@@ -33,7 +77,12 @@ storage:
   repository:
     enabled: true
     url: ""
+vault:
+  disableURLDiscovery: true
+velero:
+  schedule: ""
+  ttl: ""
 versionStream:
-  ref: 2.0.1245+cjxd.8
-  url: https://github.com/cloudbees/cloudbees-jenkins-x-versions.git
+  ref: v1.0.415
+  url: https://github.com/jenkins-x/jenkins-x-versions.git
 webhook: prow
