@@ -18,6 +18,6 @@ dependencies:
   repository: http://chartmuseum.jenkins-x.io
 - name: jenkins-x-platform
   repository: http://chartmuseum.jenkins-x.io
-#- condition: chartmuseum.enabled
-#  name: chartmuseum
-#  repository: http://chartmuseum.jenkins-x.io
+- name: jx-app-ui
+  repository: https://charts.cloudbees.com/cjxd/cloudbees
+  version: 0.0.0-snapshot-pr-1401-2
